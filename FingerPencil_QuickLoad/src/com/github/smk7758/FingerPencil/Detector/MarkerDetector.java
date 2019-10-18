@@ -5,11 +5,8 @@ import java.util.List;
 
 import org.opencv.aruco.Aruco;
 import org.opencv.aruco.Dictionary;
-<<<<<<< HEAD
 import org.opencv.calib3d.Calib3d;
 import org.opencv.core.CvType;
-=======
->>>>>>> 6b432b5f135671bfb9507e70dd9c408c06270564
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfDouble;
 import org.opencv.core.Point;
@@ -130,13 +127,10 @@ public class MarkerDetector {
 
 			Aruco.drawAxis(outputImage, cameraMatrix, distortionCoefficients,
 					rotationMatrix, translationVectors, 0.1f);
-<<<<<<< HEAD
 			Mat rotationMatrix_ = new Mat(3, 3, CvType.CV_64FC1);
 			Calib3d.Rodrigues(rotationMatrix, rotationMatrix_);
 //			Main.debugLog("[R]"+rotationMatrix_.dump(),LogLevel.DEBUG,"process | MarkerDetector");
 //			Main.debugLog("[t]"+translationVectors.dump(),LogLevel.DEBUG,"process | MarkerDetector");
-=======
->>>>>>> 6b432b5f135671bfb9507e70dd9c408c06270564
 		}
 	}
 
@@ -177,9 +171,6 @@ public class MarkerDetector {
 		}
 
 		estimateMarkerPose(outputImage, cameraMatrix, distortionCoefficients, corners, markerIds, markerParameters);
-<<<<<<< HEAD
 
-=======
->>>>>>> 6b432b5f135671bfb9507e70dd9c408c06270564
 	}
 }

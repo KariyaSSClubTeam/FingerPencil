@@ -20,7 +20,6 @@ import com.github.smk7758.FingerPencil.Main.LogLevel;
 public class SubstituteFingerDetector {
 	// OpenCV => 0<H<180, 0<S<255, 0<V<255
 	// GIMP => 0<H<360, 0<S<100, 0<V<100 ::==>> H'=H * 1/2, S'=S*2, V'=V*2
-<<<<<<< HEAD
 //	static final Scalar minHsvBlue = new Scalar(100, 160, 100), maxHsvBlue = new Scalar(135, 255, 255);
 //	// 205, 83, 58,, not: 198, 18, 68,, 206, 17, 62,,
 //	static final Scalar minHsvRed = new Scalar(170, 100, 65), maxHsvRed = new Scalar(180, 180, 180);
@@ -40,18 +39,6 @@ public class SubstituteFingerDetector {
 	 	static final Scalar minHsvBlue = new Scalar(70, 30, 80), maxHsvBlue = new Scalar(100, 75, 120);//みどり
 	 	static final Scalar minHsvRed =  new Scalar(125, 5, 60), maxHsvRed = new Scalar(175, 30, 95);//むらさき
 //
-=======
-	static final Scalar minHsvBlue = new Scalar(100, 160, 100), maxHsvBlue = new Scalar(135, 255, 255);
-	// 205, 83, 58,, not: 198, 18, 68,, 206, 17, 62,,
-	static final Scalar minHsvRed = new Scalar(170, 100, 65), maxHsvRed = new Scalar(180, 180, 180);
-	// 353, 62, 34
-	static final Scalar minHsvRed_0 = new Scalar(0, 110, 65), maxHsvRed_0 = new Scalar(10, 240, 240);
-	static final Scalar minHsvRed_1 = new Scalar(170, 110, 65), maxHsvRed_1 = new Scalar(180, 255, 255);
-	// 356, 65, 40
-
-	// static final Scalar minHsvBlue = new Scalar(100, 80, 80), maxHsvBlue = new Scalar(135, 255, 255); // 学校のインク
-	// static final Scalar minHsvRed = new Scalar(160, 90, 50), maxHsvRed = new Scalar(180, 255, 200); // 学校のインク
->>>>>>> 6b432b5f135671bfb9507e70dd9c408c06270564
 
 	/**
 	 * @param matHsv
@@ -62,11 +49,7 @@ public class SubstituteFingerDetector {
 
 		// 指の点の取得 (ここから)
 		Mat matHsvBlue = getBluePart(matHsv);
-<<<<<<< HEAD
 		Mat matHsvRed = getRedPart(matHsv);
-=======
-		Mat matHsvRed = getRedPartDouble(matHsv);
->>>>>>> 6b432b5f135671bfb9507e70dd9c408c06270564
 
 		// getFingerPoint
 		List<MatOfPoint> contoursBlue = new ArrayList<>(), contoursRed = new ArrayList<>();
@@ -112,7 +95,6 @@ public class SubstituteFingerDetector {
 				"getSubstituteFingerPoint");
 
 		return Optional.of(new AbstractMap.SimpleEntry<Point, Point>(
-<<<<<<< HEAD
 				new Point(redPoint_[0], redPoint_[1] - (fingerDiff_y / 10)),
 				new Point(bluePoint_[0], bluePoint_[1])));
 	}
@@ -164,23 +146,6 @@ public class SubstituteFingerDetector {
 //		return matBluePart0;
 //	}
 
-=======
-				new Point(redPoint_[0], redPoint_[1] - (fingerDiff_y / 5)),
-				new Point(bluePoint_[0], bluePoint_[1])));
-	}
-
-	public static Mat getRedPartDouble(Mat matHsv) {
-		Mat matRedPart0 = matHsv.clone();
-		Mat matRedPart1 = matHsv.clone();
-
-		Core.inRange(matRedPart0, minHsvRed_0, maxHsvRed_0, matRedPart0);
-		Core.inRange(matRedPart1, minHsvRed_1, maxHsvRed_1, matRedPart1);
-
-		Core.add(matRedPart0, matRedPart1, matRedPart0);
-		return matRedPart0;
-	}
-
->>>>>>> 6b432b5f135671bfb9507e70dd9c408c06270564
 	public static Mat getRedPart(Mat matHsv) {
 		Mat matRedPart = matHsv.clone();
 		Core.inRange(matRedPart, minHsvRed, maxHsvRed, matRedPart);
@@ -189,16 +154,12 @@ public class SubstituteFingerDetector {
 
 	public static Mat getBluePart(Mat matHsv) {
 		Mat matBluePart = matHsv.clone();
-<<<<<<< HEAD
 		Mat matBluePart0 = matHsv.clone();
 		Core.inRange(matBluePart, minHsvBlue, maxHsvBlue, matBluePart);
 		Core.inRange(matBluePart0, minHsvBlue_0, maxHsvBlue_0, matBluePart0);
 		Core.add(matBluePart, matBluePart0, matBluePart);
 
 
-=======
-		Core.inRange(matBluePart, minHsvBlue, maxHsvBlue, matBluePart);
->>>>>>> 6b432b5f135671bfb9507e70dd9c408c06270564
 		return matBluePart;
 	}
 }
