@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+	final String filePath = "S:\\FingerPencil\\movie\\CIMG1780_perspected_points_1544884008082.txt";
 
 	public static void main(String[] args) throws AWTException {
 		// Robot robot = new Robot();
@@ -33,10 +34,9 @@ public class Main {
 		final Point firstMousePoint = MouseInfo.getPointerInfo().getLocation();
 
 		Robot robot = new Robot();
+		robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
 
-
-
-		Path path = Paths.get("C:\\finger_pencil\\input\\CIMG5896_perspected_points_1570177798840.txt");
+		Path path = Paths.get(filePath);
 		List<Point> points = FileIO.getPoints(path);
 		convertPoints(points).forEach(point -> {
 			try {
@@ -44,14 +44,7 @@ public class Main {
 			} catch (InterruptedException ex) {
 				ex.printStackTrace();
 			}
-			if(point.x == 0) {
-				robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-			}else {
-
-				robot.mouseMove(firstMousePoint.x + point.x, firstMousePoint.y + point.y);
-				robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-//				robot.mouseMove(firstMousePoint.x + point.x, firstMousePoint.y + point.y);
-			}
+			robot.mouseMove(firstMousePoint.x + point.x, firstMousePoint.y + point.y);
 		});
 		robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
 
